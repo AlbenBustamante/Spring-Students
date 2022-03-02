@@ -26,7 +26,7 @@ public class StudentController {
     public String showRegisterForm(Model model) {
         var student = new Student();
         model.addAttribute("student", student);
-        return "register_students";
+        return "register_student";
     }
 
     @PostMapping("/students")
@@ -38,6 +38,6 @@ public class StudentController {
     @GetMapping("/students/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Long studentId, Model model) {
         model.addAttribute("studentId", this.studentService.getStudentById(studentId));
-        return "update_students";
+        return "update_student";
     }
 }
