@@ -24,6 +24,21 @@ public class Student {
     @Column(nullable = false, unique = true, length = 70)
     private String email;
 
+    public Student() { }
+
+    public Student(String name, String lastName, String email) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public Student(Long studentId, String name, String lastName, String email) {
+        this.studentId = studentId;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     public Long getStudentId() {
         return studentId;
     }
