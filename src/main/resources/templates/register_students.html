@@ -24,7 +24,7 @@
             <div class="col-tg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <h1 class="text-center">Registro de Estudiantes</h1>
                 <div class="card-body">
-                    <form th:action="@{/students}" th:object="${student}" method="POST">
+                    <form th:action="@{/students}" th:object="${student}" method="post">
                         <div class="form-group">
                             <label>Nombres</label>
                             <input type="text" name="name" th:field="*{name}" class="form-control" placeholder="Escriba sus nombres" required>

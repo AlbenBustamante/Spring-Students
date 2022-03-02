@@ -7,24 +7,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/students")
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/all")
+    @GetMapping("/students")
     public String getStudents(Model model) {
         model.addAttribute("students", studentService.getAllStudents());
         return "students";
     }
 
-    @GetMapping("/register")
-    public String registerStudent(Model model) {
+    @GetMapping("/students/register")
+    public String showForm(Model model) {
         var student = new Student();
         model.addAttribute("student", student);
         return "register_students";
+    }
+
+    @PostMapping("/students")
+    public String registerStudent(@ModelAttribute("student") Student student) {
+        studentService.save(student);
+        return "redirect:/students";
     }
 }
