@@ -25,6 +25,6 @@ public class StudentController {
     public String registerStudent(Model model) {
         var student = new Student();
         model.addAttribute("student", student);
-        return "register_student";
+        return "register_students";
     }
 }
