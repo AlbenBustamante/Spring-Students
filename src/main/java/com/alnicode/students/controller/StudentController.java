@@ -40,4 +40,11 @@ public class StudentController {
         model.addAttribute("studentId", this.studentService.getStudentById(studentId));
         return "update_student";
     }
+
+    @PostMapping("/students/{id}")
+    public String updateStudent(@PathVariable("id") Long studentId, @ModelAttribute("student") Student student) {
+        student.setStudentId(studentId);
+        studentService.updateStudent(student);
+        return "redirect:/students";
+    }
 }
