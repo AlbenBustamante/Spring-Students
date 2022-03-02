@@ -14,7 +14,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/students")
+    @GetMapping("/all")
     public String getStudents(Model model) {
         model.addAttribute("students", studentService.getAllStudents());
         return "students";
