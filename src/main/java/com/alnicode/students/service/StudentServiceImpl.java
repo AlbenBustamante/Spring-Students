@@ -1,7 +1,6 @@
 package com.alnicode.students.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.alnicode.students.model.Student;
 import com.alnicode.students.repository.StudentRepository;
@@ -25,8 +24,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Optional<Student> getStudentById(Long studentId) {
-        return this.studentRepo.findById(studentId);
+    public Student getStudentById(Long studentId) {
+        return this.studentRepo.findById(studentId).get();
     }
 
     @Override
@@ -36,10 +35,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean deleteStudent(Long studentId) {
-        return this.getStudentById(studentId).map(student -> {
-            this.studentRepo.deleteById(studentId);
-            return true;
-        }).orElse(false);
+        return this.getStudentById(studentId) != null;
     }
     
 }

@@ -37,14 +37,23 @@ public class StudentController {
 
     @GetMapping("/students/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Long studentId, Model model) {
-        model.addAttribute("studentId", this.studentService.getStudentById(studentId));
+        model.addAttribute("student", studentService.getStudentById(studentId));
         return "update_student";
     }
 
     @PostMapping("/students/{id}")
     public String updateStudent(@PathVariable("id") Long studentId, @ModelAttribute("student") Student student) {
-        student.setStudentId(studentId);
-        studentService.updateStudent(student);
+        /*var updatedStudent = new Student(studentId, student.getName(), student.getLastName(), student.getEmail());
+        studentService.save(updatedStudent);*/
+
+        var existingStudent = studentService.getStudentById(studentId);
+        existingStudent.setStudentId(studentId);
+        existingStudent.setName(student.getName());
+        existingStudent.setLastName(student.getLastName());
+        existingStudent.setEmail(student.getEmail());
+
+        studentService.updateStudent(existingStudent);
+
         return "redirect:/students";
     }
 

@@ -29,6 +29,7 @@
                         <th>Nombres</th>
                         <th>Apellidos</th>
                         <th>Email</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,10 @@
                         <td th:text="${student.name}"></td>
                         <td th:text="${student.lastName}"></td>
                         <td th:text="${student.email}"></td>
+                        <td>
+                            <a th:href="@{/students/edit/{id}(id=${student.studentId})}" class="btn btn-info">Editar</a>
+                            <a th:href="@{/students/delete/{id}(id=${student.studentId})}" class="btn btn-danger">Eliminar</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
