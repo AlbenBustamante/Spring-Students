@@ -35,7 +35,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public boolean deleteStudent(Long studentId) {
-        return this.getStudentById(studentId) != null;
+        try {
+            this.studentRepo.deleteById(studentId);
+            return true;
+        } catch(Exception ex) {
+            return false;
+        }
     }
     
 }
